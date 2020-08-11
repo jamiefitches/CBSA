@@ -17,7 +17,7 @@ Before using this program, the following directories must be created in the 'CBS
 
 - /HTML/RhoComparisons/
 
-- /HTML/PolarTimelines_***season******year***/ (e.g. PolarTimelines_Spring18, etc)
+- /HTML/PolarTimelines_***<season>******<year>***/ (e.g. PolarTimelines_Spring18, etc)
  
 - /ChanPolTimelines/
 
