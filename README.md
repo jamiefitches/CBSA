@@ -25,7 +25,7 @@ Before using this program, the following directories must be created in the 'CBS
 
 - /TPOL_Comparison/Efiles/
 
-- /TPOL_Comparison/(season)_(year)_pol_(radiator_orientation)_FitOut/ (e.g. Spring_18_pol_0_FitOut)
+- /TPOL_Comparison/(season)_(year)%_pol%_(radiator_orientation)_FitOut/ (e.g. Spring_18_pol_0_FitOut)
  
 - /FarmInFiles/
 
