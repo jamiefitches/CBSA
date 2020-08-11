@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cp AnalyseRun.C AnalyseRun_Fit_Only.C
+root -b -q -l "AnalyseRun_Fit_Only.C($1, $2, $3, $4)"
+sleep 10
+echo "done"
