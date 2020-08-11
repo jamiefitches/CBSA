@@ -1,6 +1,7 @@
 # CBSA
 
 This software, available at https://github.com/jamiefitches/CBSA, calculates beam polarisation from the parameters of a spectrum enhancement fit, using the technique documented in the following reference;
+
 K. Livingston. Polarization from Coherent Bremsstrahlung Enhancement, CLAS Note 2011-02, CLAS Collaboration Jefferson Lab, 2011.
 http://nuclear.gla.ac.uk/~kl/cbsa/FittingCoherentBrem.pdf
 
