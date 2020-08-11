@@ -44,7 +44,7 @@ Information about which runs belong to which period can be found at https://hall
 Next, the correct run configurations need to be extracted from the RCDB database. This is done from the command line using;
 
 ```
-./ReadFromRCDB \<label\> \<min run\> \<max run\>
+./ReadFromRCDB <label> <min run> <max run>
 ```
 
 Where \<min run\> and \<max run\> define the range of all required diamond and amorphous run files and \<label\> specifies the name of the run config file.
@@ -131,7 +131,7 @@ Where,
 This will create the files 'FileList', 'AmFileList', 'RunList' and 'RunPeriodList' in the 'FarmInFiles' directory. The farm script is then run from the command line using;
 
 ```
-./Farm_Submission FarmInFiles/FileList FarmInFiles/AmFileList FarmInFiles/RunList FarmInFiles/RunPeriodList \<run config file\> \<skim name\>
+./Farm_Submission FarmInFiles/FileList FarmInFiles/AmFileList FarmInFiles/RunList FarmInFiles/RunPeriodList <run config file> <skim name>
  ```
  
 This automatically creates output directories for each run in 'HTML/OutFiles'. 
@@ -139,13 +139,13 @@ This automatically creates output directories for each run in 'HTML/OutFiles'.
 To calculate enhancements only, the following must be executed from the command line;  
 
 ```
-./Farm_Enhancement_Submission FarmInFiles/FileList FarmInFiles/AmFileList FarmInFiles/RunList FarmInFiles/RunPeriodList \<skim name\>
+./Farm_Enhancement_Submission FarmInFiles/FileList FarmInFiles/AmFileList FarmInFiles/RunList FarmInFiles/RunPeriodList <skim name>
 ```
 
 And for fitting only, use the following;
 
 ```
-./Farm_Fit_Submission FarmInFiles/RunList \<beam energy\> \<collimator distance\> \<collimator diameter\>
+./Farm_Fit_Submission FarmInFiles/RunList <beam energy> <collimator distance> <collimator diameter>
 ```
 
 This program is also able to generate a HTML page, displaying all enhancement fits and polarisation profiles for a specified run period in a convenient format, in addition to channel polarisation, peak polarisation and fit parameter timelines. First, start ROOT and execute the command;
