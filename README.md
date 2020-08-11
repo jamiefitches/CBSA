@@ -33,7 +33,11 @@ Before using this program, the following directories must be created in the 'CBS
 
 Note that options for (season), (year) and (radiator_orientation), will need to be specified by the user based on the data sets under study. 
 
-Also note that the naming convention used for (season) is that Spring = Jan-Jun and Fall = Jul-Dec. 
+Also note that the naming convention used for (season) is as follows:
+
+Spring = Jan-Jun 
+
+Fall = Jul-Dec. 
 
 Information about which runs belong to which period can be found at https://halldweb.jlab.org/wiki/index.php/Run_Periods
 
