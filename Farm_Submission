@@ -1,0 +1,60 @@
+#!/bin/tcsh
+
+set CBSA_Dir_Path = $PWD
+setenv CBSA_DIR_PATH $CBSA_Dir_Path
+
+set DiFilelist = $1
+set DiFiles=`cat $DiFilelist`
+
+set AmFilelist = $2
+set AmFiles=`cat $AmFilelist`
+
+set RunNumList = $3
+set RunNums = `cat $RunNumList`
+
+set RunPeriodList = $4
+set RunPeriods=`cat $RunPeriodList`
+
+set AllRunsFile = $5
+setenv ALL_RUNS $AllRunsFile
+
+set SkimName = $6
+setenv SKIM_NAME $SkimName
+
+
+set AmoArray = 
+set DiArray = 
+set RunNumArray =
+set RunPeriodArray = 
+
+set length = 1
+foreach file ($DiFiles)
+        set DiArray = ( $DiArray "$file" )
+	@ length++
+end
+
+foreach file ($AmFiles)
+    set AmoArray = ( $AmoArray "$file" )
+end
+
+foreach run ($RunNums)
+    set RunNumArray = ( $RunNumArray "$run" )
+end
+
+foreach period ($RunPeriods)
+    set RunPeriodArray = ( $RunPeriodArray "$period" )
+end
+
+set i = 1
+while ( $i < $length )
+    setenv INPUT_FILE $DiArray[$i]
+    setenv AM_FILE $AmoArray[$i]
+    setenv RUN_NUMBER $RunNumArray[$i]
+    setenv RUN_PERIOD $RunPeriodArray[$i]
+    echo "Submitted $INPUT_FILE for analysis"
+    qsub Farm_Wrapper
+    @ i++
+    sleep 60
+    end
+
+
