@@ -137,6 +137,7 @@ void GenerateFileLists_Range(string FilePath, string skim, const char * AllRunsL
       if(rootfile == 0){
 	continue;
       }
+      rootfile -> Close("R");
       if(returnRun(to_string(RunNum)).CrystalOrientation == -1 ||GetAmoRun(to_string(RunNum)).RunNumber == "None"){
 	continue;
       }
@@ -150,7 +151,6 @@ void GenerateFileLists_Range(string FilePath, string skim, const char * AllRunsL
     }
   }
 }
-
 
   
   
