@@ -35,9 +35,9 @@ Note that options for (season), (year) and (radiator_orientation), will need to 
 
 Also note that the naming convention used for (season) is as follows:
 
-Spring = Jan-Jun 
+- Spring = Jan-Jun 
 
-Fall = Jul-Dec. 
+- Fall = Jul-Dec. 
 
 Information about which runs belong to which period can be found at https://halldweb.jlab.org/wiki/index.php/Run_Periods
 
