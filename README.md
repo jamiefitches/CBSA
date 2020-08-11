@@ -7,29 +7,29 @@ http://nuclear.gla.ac.uk/~kl/cbsa/FittingCoherentBrem.pdf
 
 Before using this program, the folliwing directories must be created in the 'CBSA' folder:
 
-/HTML/
+- /HTML/
 
-/HTML/OutFiles/
+- /HTML/OutFiles/
 
-/HTML/ParameterTimelines/
+- /HTML/ParameterTimelines/
 
-/HTML/PeakPolTimelines/
+- /HTML/PeakPolTimelines/
 
-/HTML/RhoComparisons/
+- /HTML/RhoComparisons/
 
-/HTML/PolarTimelines_(season)(year)/ (e.g. PolarTimelines_Spring18, etc)
+- /HTML/PolarTimelines_(season)(year)/ (e.g. PolarTimelines_Spring18, etc)
  
-/ChanPolTimelines/
+- /ChanPolTimelines/
 
-/TPOL_Comparison/RunConfig/
+- /TPOL_Comparison/RunConfig/
 
-/TPOL_Comparison/Efiles/
+- /TPOL_Comparison/Efiles/
 
-/TPOL_Comparison/(season)_(year)_pol_(radiator_orientation)_FitOut/ (e.g. Spring_18_pol_0_FitOut)
+- /TPOL_Comparison/(season)_(year)_pol_(radiator_orientation)_FitOut/ (e.g. Spring_18_pol_0_FitOut)
  
-/FarmInFiles/
+- /FarmInFiles/
 
-/RunConfig/
+- /RunConfig/
 
 Note that where there are options for (season), (year) and (radiator_orientation), the user will need to specify these based on the data sets under study. 
 
