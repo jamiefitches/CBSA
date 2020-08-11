@@ -1,0 +1,49 @@
+#!/bin/tcsh
+#PBS -N CBSA_Fit
+#PBS -m abe
+#PBS -M j.fitches.1@research.gla.ac.uk
+#PBS -V 
+
+set CBSA_Dir_Path = $CBSA_DIR_PATH
+set Current_User = $USER
+
+set RunNum = `basename $RUN_NUMBER`
+set tempdir = "/scratch/${Current_User}/Run_${RunNum}"
+mkdir -p $tempdir
+echo "Making temporary working directory: $tempdir"
+
+cd $CBSA_Dir_Path
+
+set OutDir = "HTML/OutFiles/Run_${RunNum}" 
+
+set HTML_Dir = "HTML"
+set OutFlDir = "OutFiles"
+
+cd $tempdir 
+
+mkdir -p $HTML_Dir
+cd $HTML_Dir
+
+mkdir -p $OutFlDir
+cd CBSA_Dir_Path
+
+echo "Copying $OutDir to ${tempdir}/${HTML_Dir}/${OutFlDir}"
+cp -R $OutDir "${tempdir}/${HTML_Dir}/${OutFlDir}"
+
+echo "copying necessary scripts to ${tempdir}"
+cp AnalyseRun.C $tempdir
+cp Farm_Fit_Code $tempdir
+cp CBSA.h $tempdir
+cp -R RunConfig $tempdir 
+cp -R Efiles $tempdir
+
+echo "Files succesfully copied"
+
+echo "changing to ${tempdir} directory"
+cd $tempdir 
+
+Farm_Fit_Code '"'$RUN_NUMBER'"' $BEAM_ENERGY $COLL_DIST $COLL_DIAM
+cp -R HTML/OutFiles/Run_${RunNum} $CBSA_Dir_Path/HTML/OutFiles
+
+rm -R $tempdir
+
