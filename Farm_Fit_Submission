@@ -1,0 +1,36 @@
+#!/bin/tcsh
+
+set CBSA_Dir_Path = $PWD
+setenv CBSA_DIR_PATH $CBSA_Dir_Path
+
+set RunNumList = $1
+set RunNums = `cat $RunNumList`
+
+set BeamEnergy = $2
+setenv BEAM_ENERGY $BeamEnergy
+
+set CollDist = $3
+setenv COLL_DIST $CollDist
+
+set CollDiam = $4
+setenv COLL_DIAM $CollDiam
+
+
+set RunNumArray =
+
+set length = 1
+foreach run ($RunNums)
+    set RunNumArray = ( $RunNumArray "$run" )
+    @ length++
+end
+
+set i = 1
+while ( $i < $length )
+    setenv RUN_NUMBER $RunNumArray[$i]
+    echo "Fitting run $RUN_NUMBER data"
+    qsub Farm_Fit_Wrapper
+    @ i++
+    sleep 60
+    end
+
+
