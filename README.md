@@ -17,7 +17,7 @@ Before using this program, the folliwing directories must be created in the 'CBS
 
 /HTML/RhoComparisons/
 
-/HTML/PolarTimelines_<season><year>/ (e.g. PolarTimelines_Spring18, etc)
+/HTML/PolarTimelines_(season)(year)/ (e.g. PolarTimelines_Spring18, etc)
  
 /ChanPolTimelines/
 
@@ -25,23 +25,23 @@ Before using this program, the folliwing directories must be created in the 'CBS
 
 /TPOL_Comparison/Efiles/
 
-/TPOL_Comparison/<season>_<year>_pol_<radiator_orientation>_FitOut/ (e.g. Spring_18_pol_0_FitOut)
+/TPOL_Comparison/(season)_(year)_pol_(radiator_orientation)_FitOut/ (e.g. Spring_18_pol_0_FitOut)
  
 /FarmInFiles/
 
 /RunConfig/
 
-Note that where there are options for <season>, <year> and <radiator_orientation>, the user will need to specify these based on the data sets under study. 
+Note that where there are options for (season), (year) and (radiator_orientation), the user will need to specify these based on the data sets under study. 
 
-Also note that the naming convention used for <season> is that Spring = Jan-Jun and Fall = Jul-Dec. 
+Also note that the naming convention used for (season) is that Spring = Jan-Jun and Fall = Jul-Dec. 
 
 Information about which runs belong to which period can be found at https://halldweb.jlab.org/wiki/index.php/Run_Periods
 
 Next, the correct run configurations need to be extracted from the RCDB database. This is done from the command line using;
 
-./ReadFromRCDB <label> <min run> <max run> 
+./ReadFromRCDB (label) (min run) (max run) 
  
-Where <min run> and <max run> define the range of all required diamond and amorphous run files and <label> specifies the name of the run config file.
+Where (min run) and (max run) define the range of all required diamond and amorphous run files and (label) specifies the name of the run config file.
 
 To calculate enhancement and fit a single run, simply start ROOT and execute the following command;
 
@@ -61,7 +61,7 @@ E = run config file
 
 F = skim name
 
-Note that the user must create the directory 'HTML/OutFiles/Run_<Run number>' prior to starting the program. All output files will be dumped in this directory.
+Note that the user must create the directory 'HTML/OutFiles/Run_(Run number)' prior to starting the program. All output files will be dumped in this directory.
 
 Also note that input skim files must contain a tagged photon energy branch. The 'AnalyseRun.C' script assumes this branch is titled 'BeamEnergy' at line 988, so this line will need to be modified if the input skims photon energy branch has a different name. 
 
@@ -79,7 +79,7 @@ B = incoherent (i.e. amorphous radiator) run filename
 
 C = coherent run number in string format
 
-D = run period (e.g. "1/17" for spring 2017, "2/18" for fall 18, etc)
+D = run period (e.g. "1/17" for Jan-Jun 2017, "2/18" for Jul-Dec 2018, etc)
 
 E = skim name
 
@@ -119,17 +119,17 @@ E = maximum run number
 
 This will create the files 'FileList', 'AmFileList', 'RunList' and 'RunPeriodList' in the 'FarmInFiles' directory. The farm script is then run from the command line using;
 
-./Farm_Submission FarmInFiles/FileList FarmInFiles/AmFileList FarmInFiles/RunList FarmInFiles/RunPeriodList <run config file> <skim name>
+./Farm_Submission FarmInFiles/FileList FarmInFiles/AmFileList FarmInFiles/RunList FarmInFiles/RunPeriodList (run config file) (skim name)
  
 This automatically creates output directories for each run in 'HTML/OutFiles'. 
 
 To calculate enhancements only, the following must be executed from the command line;  
 
-./Farm_Enhancement_Submission FarmInFiles/FileList FarmInFiles/AmFileList FarmInFiles/RunList FarmInFiles/RunPeriodList <skim name>
+./Farm_Enhancement_Submission FarmInFiles/FileList FarmInFiles/AmFileList FarmInFiles/RunList FarmInFiles/RunPeriodList (skim name)
 
 And for fitting only, use the following;
 
-./Farm_Fit_Submission FarmInFiles/RunList <beam energy> <collimator distance> <collimator diameter>
+./Farm_Fit_Submission FarmInFiles/RunList (beam energy) (collimator distance) (collimator diameter)
 
 This program is also able to generate a HTML page, displaying all enhancement fits and polarisation profiles for a specified run period in a convenient format, in addition to channel polarisation, peak polarisation and fit parameter timelines. First, start ROOT and execute the command;
 
