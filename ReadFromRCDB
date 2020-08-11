@@ -1,0 +1,88 @@
+#!/bin/tcsh 
+
+set outfile = "RunConfig/$1_RunInfo.dat"
+set minrun = $2
+set maxrun = $3
+
+set lastamo = -1
+
+#make outdir if it doesn't exist
+mkdir -p RunConfig
+
+#remove previous version of this file
+rm -f $outfile
+
+echo "#Run  Angle Plane LastAmoRun" >> $outfile
+
+@ run = $minrun
+while ($run <= $maxrun)
+
+
+    set ANGLE  = -1
+    set ISPARA = -1
+    set 
+    wget -O RCDB_File https://halldweb.jlab.org/rcdb/runs/info/$run
+
+    set PolLine = `sed -n 591p RCDB_File`
+
+    set polangleline = `grep -n "polarization_angle" RCDB_File`
+
+    set polanglelinenum = `echo $polangleline | cut -c1-3`
+
+    set poldirline = `grep -n "polarization_direction" RCDB_File`
+
+    set poldirlinenum = `echo $poldirline | cut -c1-3`
+
+    set psline = `grep -n "ps_converter" RCDB_File`
+
+    set pslinenum = `echo $psline | cut -c1-3`
+
+    foreach linenum (`seq $polanglelinenum 1 $poldirlinenum`)
+
+	set line = `sed -n {$linenum}p RCDB_File`
+    
+	set linenospace = `echo $line | tr -s ' '`
+	
+	if (`echo $linenospace` == `echo 0.0`) then
+	echo $linenospace 
+	set ANGLE = "  0"
+	else if (`echo $linenospace` == `echo 45.0`) then
+	echo $linenospace 
+	set ANGLE = " 45"
+	else if (`echo $linenospace` == `echo 90.0`) then
+	echo $linenospace 
+	set ANGLE = " 90"
+	else if (`echo $linenospace` == `echo 135.0`) then
+	echo $linenospace
+	set ANGLE = "135"
+	else if (`echo $linenospace` == `echo -1.0`) then
+	echo $linenospace
+	set ANGLE = " -1"
+	set lastamo = $run
+	endif
+
+    end
+
+    foreach linenum (`seq $poldirlinenum 1 $pslinenum`)
+
+	set line = `sed -n {$linenum}p RCDB_File`
+    
+	set linenospace = `echo $line | tr -s ' '`
+
+	if (`echo $linenospace` == `echo PERP`) then
+	echo $linenospace 
+	set ISPARA = "     0"
+	else if (`echo $linenospace` == `echo PARA`) then
+	echo $linenospace 
+	set ISPARA = "     1"
+	else if (`echo $linenospace` == `echo N/A`) then
+	echo $linenospace 
+	set ISPARA = "    -1"
+	endif
+    end
+
+    #it would be more useful to have them all together in one file like this
+    echo "$run  $ANGLE $ISPARA $lastamo" >> $outfile
+    @ run = $run + 1
+
+end
