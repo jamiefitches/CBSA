@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#/home/gluex/Software/CentOS-7/build_scripts/gluex_env_version.csh /home/gluex/Software/CentOS-7/versions/version_master.xml
+root -b -q -l "AnalyseRun.C($1, $2, $3, $4, $5, $6)"
+sleep 10
+ 
