@@ -1,0 +1,58 @@
+#!/bin/tcsh
+#PBS -N CBSA
+#PBS -m abe
+#PBS -M j.fitches.1@research.gla.ac.uk
+#PBS -V 
+
+set CBSA_Dir_Path = $CBSA_DIR_PATH
+set Current_User = $USER
+
+set fname = `basename $INPUT_FILE`
+set RunNum = `basename $RUN_NUMBER`
+set RunPeriod = `basename $RUN_PERIOD`
+set Amfname = `basename $AM_FILE`
+
+set tempdir = "/scratch/${Current_User}/Run_${RunNum}"
+mkdir -p $tempdir
+echo "Making temporary working directory: $tempdir"
+
+echo "Copying $INPUT_FILE to ${tempdir}/infile"
+cp $INPUT_FILE ${tempdir}/infile
+
+
+echo "Copying $AM_FILE to ${tempdir}/amfile"
+cp $AM_FILE ${tempdir}/amfile
+cd CBSA_Dir_Path
+$GLUEX_SOFTWARE_SETUP
+
+echo "copying necessary scripts to ${tempdir}"
+cp AnalyseRun.C $tempdir
+cp Farm_Code $tempdir
+cp CBSA.h $tempdir
+cp RunAngles.dat $tempdir 
+cp AllRuns.dat $tempdir 
+cp RunParaPerp.dat $tempdir 
+cp DSelector_Spring17.h $tempdir
+cp DSelector_Spring17.C $tempdir
+cp DSelector_Spring18.h $tempdir
+cp DSelector_Spring18.C $tempdir
+cp DSelector_Fall18.h $tempdir
+cp DSelector_Fall18.C $tempdir
+cp -R RunConfig $tempdir 
+cp -R Efiles $tempdir
+
+echo "Files succesfully copied"
+
+echo "changing to ${tempdir} directory"
+cd $tempdir 
+mkdir HTML
+mkdir HTML/OutFiles
+mkdir HTML/OutFiles/Run_${RunNum}
+
+Farm_Code '"'${tempdir}/infile'"' '"'${tempdir}/amfile'"' '"'$RUN_NUMBER'"' '"'$RUN_PERIOD'"' '"'$ALL_RUNS'"' '"'$SKIM_NAME'"'
+cp -R HTML/OutFiles/Run_${RunNum} $CBSA_Dir_Path/HTML/OutFiles
+
+rm -f ${tempdir}/amfile
+rm -f ${tempdir}/infile
+rm -R $tempdir
+
