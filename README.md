@@ -5,7 +5,9 @@ This software, available at https://github.com/jamiefitches/CBSA, calculates bea
 K. Livingston. Polarization from Coherent Bremsstrahlung Enhancement, CLAS Note 2011-02, CLAS Collaboration Jefferson Lab, 2011.
 http://nuclear.gla.ac.uk/~kl/cbsa/FittingCoherentBrem.pdf
 
-Before using this program, the following directories must be created in the 'CBSA' folder:
+Before using this program, the GlueX software and environment must be set up correctly, as detailed in https://halldweb.jlab.org/wiki/index.php/DSelector
+
+The following directories must also be created in the 'CBSA' folder:
 
 - /HTML/
 
