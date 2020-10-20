@@ -46,10 +46,10 @@ Information about which runs belong to which period can be found at https://hall
 Next, the correct run configurations need to be extracted from the RCDB database. This is done from the command line using;
 
 ```
-./ReadFromRCDB <label> <min run> <max run>
+python ReadFromRCDB.py
 ```
 
-Where \<min run\> and \<max run\> define the range of all required diamond and amorphous run files and \<label\> specifies the name of the run config file.
+When prompted, input the minimum and maximum run numbers to define the range of all required diamond and amorphous run files, as well as a label to specify the name of the run config file (make sure to enter this as a string).
 
 To calculate enhancement and fit a single run, simply start ROOT and execute the following command;
 
